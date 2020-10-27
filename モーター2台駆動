@@ -1,0 +1,47 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://obniz.io/js/jquery-3.2.1.min.js"></script>
+  <script src="https://unpkg.com/obniz@3.9.0/obniz.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div id="obniz-debug"></div>
+<h1>obniz instant html</h1>
+<button id="forward">窓を開ける</button>
+<button id="reverse">窓を閉じる</button>
+<div id="print"></div>
+
+<script>
+//obniz1台目のID
+var obnizA = new Obniz("2783-8426");
+obnizA.onconnect = async function () {
+//obniz2台目のID
+  var obnizB = new Obniz("6646-6919");
+  obnizB.onconnect = async function() {
+    var motor1 = obnizA.wired("DCMotor", {forward:0, back:1});
+    var motor2 = obnizB.wired("DCMotor", {forward:0, back:1});
+
+    $('#forward').click(function () {
+    motor1.forward();
+    motor2.forward();
+    setTimeout(function(){
+    motor.stop();
+     }, 1000);
+    });
+
+    $('#reverse').click(function () {
+    motor1.reverse();
+    motor2.reverse();
+    setTimeout(function(){
+    motor.stop();
+     }, 1000);
+    }); 
+  }
+}
+
+
+</script>
+</body>
+</html>
