@@ -1,0 +1,44 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://unpkg.com/obniz@3.9.0/obniz.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript">
+    var obniz = new Obniz("xxxx-xxxx");  //自分のobnizの番号に書き換えて下さい
+    
+    obniz.onconnect = async function () {
+      var  led  = obniz.wired("LED", {anode: 0 , cathode: 1 });
+      var ledTimer, ledFlag = 0;
+      $("#start").click(async function(){
+      //3000ミリ秒毎に実行されるタイマーを起動
+      ledTimer = setInterval(function(){
+      //以下は3000ミリ秒ごとに実行される処理
+      if(ledFlag == 0){
+      led.on();
+      ledFlag = 1;
+      }
+      else{
+      led.off();
+      ledFlag = 0;
+      }
+      },3000);
+      });
+
+      $("#stop").click(function(){
+      //タイマーを止める
+      clearInterval(ledTimer);
+      led.off();
+      });
+
+    }
+
+  </script>
+</head>
+<body>
+  <div id="obniz-debug"></div>
+  <h1>タイマー</h1>
+  <button id="start">開始</button><br/> 
+  <button id="stop">停止</button>
+
+</body>
+</html>
