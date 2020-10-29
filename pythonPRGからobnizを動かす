@@ -1,0 +1,19 @@
+##コマンドプロンプトで"pip install obniz"しておく
+
+import asyncio
+import sys
+from obniz import Obniz
+
+try:#Ctrl+cで終了(すぐに終了されない)
+    async def onconnect(obniz):
+        ##↓↓obnizでやりたい処理
+        pass
+        ##↑↑obnizでやりたい処理
+
+    #obnizの接続
+    obniz = Obniz('OBNIZ_ID')
+    obniz.onconnect = onconnect
+    asyncio.get_event_loop().run_forever()
+
+except KeyboardInterrupt:
+    sys.exit()
