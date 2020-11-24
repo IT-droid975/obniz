@@ -14,7 +14,10 @@
 <div id="print"></div>
 
 <script>
-//obniz1台目のID
+
+
+//　黒が１
+// obniz1台目ID
 var obnizA = new Obniz("2783-8426");
 obnizA.onconnect = async function () {
 //obniz2台目のID
